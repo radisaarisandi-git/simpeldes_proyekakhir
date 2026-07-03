@@ -26,7 +26,7 @@
         <div class="card">
             <div class="card-body">
                 <h5>Selamat Datang, <strong>{{ Auth::user()->name }}</strong>!</h5>
-                <p>Anda login sebagai <strong>{{ strtoupper(Auth::user()->role) }}</strong>. Gunakan menu di sidebar sebelah kiri untuk mengelola permohonan dokumen masuk dari warga.</p>
+                <p>Anda login sebagai <strong>{{ strtoupper(Auth::user()->role) }}</strong>. Gunakan menu di sidebar kiri untuk mengelola permohonan dokumen masuk dari warga.</p>
             </div>
         </div>
     </div>
