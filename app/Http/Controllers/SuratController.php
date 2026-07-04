@@ -14,10 +14,13 @@ class SuratController extends Controller
         return view('warga.riwayat_surat', compact('riwayat_Surat'));
     }
 
-    public function create() {
-        return view('warga.ajukan_surat');
-    }
+    public function create(Request $request)
+    {
+        $jenis = $request->query('jenis'); // mengambil ?jenis=domisili
 
+        return view('warga.ajukan_surat', compact('jenis'));
+    }
+    
     public function store(Request $request)
     {
         $request->validate([
