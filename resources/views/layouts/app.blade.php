@@ -6,12 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title') - Pelayanan Desa</title>
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
-    
+
     <style>
-        .skip-link, [href="#main-content"], [href="#navigation"] {
+        .skip-link,
+        [href="#main-content"],
+        [href="#navigation"] {
             display: none !important;
             opacity: 0 !important;
             visibility: hidden !important;
@@ -29,7 +32,8 @@
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
+                            class="fas fa-bars"></i></a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
@@ -45,7 +49,8 @@
         </nav>
 
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <a href="{{ Auth::user()->role === 'warga' ? route('warga.dashboard') : route('admin.dashboard') }}" class="brand-link">
+            <a href="{{ Auth::user()->role === 'warga' ? route('warga.dashboard') : route('admin.dashboard') }}"
+                class="brand-link">
                 <span class="brand-text font-weight-light"><b>SIMPELDES</b> Kel. 1</span>
             </a>
 
@@ -65,16 +70,19 @@
                 </div>
 
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
 
                         <li class="nav-item">
                             @if (Auth::user()->role === 'staf' || Auth::user()->role === 'kades')
-                                <a href="{{ route('admin.dashboard') }}" class="nav-link {{ Request::is('admin/dashboard') ? 'active' : '' }}">
+                                <a href="{{ route('admin.dashboard') }}"
+                                    class="nav-link {{ Request::is('admin/dashboard') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
                                     <p>Dashboard</p>
                                 </a>
                             @else
-                                <a href="{{ route('warga.dashboard') }}" class="nav-link {{ Request::is('warga/dashboard') ? 'active' : '' }}">
+                                <a href="{{ route('warga.dashboard') }}"
+                                    class="nav-link {{ Request::is('warga/dashboard') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
                                     <p>Dashboard</p>
                                 </a>
@@ -83,13 +91,15 @@
 
                         @if (Auth::user()->role === 'warga')
                             <li class="nav-item">
-                                <a href="{{ route('warga.surat.create') }}" class="nav-link {{ Request::is('warga/surat/create') ? 'active' : '' }}">
+                                <a href="{{ route('warga.surat.create') }}"
+                                    class="nav-link {{ Request::is('warga/surat/create') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-file-alt"></i>
                                     <p>Ajukan Surat</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('warga.surat.index') }}" class="nav-link {{ Request::is('warga/surat') ? 'active' : '' }}">
+                                <a href="{{ route('warga.surat.index') }}"
+                                    class="nav-link {{ Request::is('warga/surat') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-history"></i>
                                     <p>Riwayat Pengajuan</p>
                                 </a>
@@ -98,13 +108,15 @@
 
                         @if (Auth::user()->role === 'staf' || Auth::user()->role === 'kades')
                             <li class="nav-item">
-                                <a href="{{ route('admin.surat.index') }}" class="nav-link {{ Request::is('admin/surat*') ? 'active' : '' }}">
+                                <a href="{{ route('admin.surat.index') }}"
+                                    class="nav-link {{ Request::is('admin/surat*') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-envelope-open-text"></i>
                                     <p>Permohonan Surat <span class="badge badge-warning right">New</span></p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('kependudukan.index') }}" class="nav-link {{ Request::is('admin/kependudukan*') ? 'active' : '' }}">
+                                <a href="{{ route('kependudukan.index') }}"
+                                    class="nav-link {{ Request::is('admin/kependudukan*') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-users"></i>
                                     <p>Data Kependudukan</p>
                                 </a>
