@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Kependudukan; 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,11 +14,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Kode pembuatan akun Kades Afdal (atau akun lainnya)
+        //User::create([
+          //  'name' => 'Kades SIMPELDES Afdal Maulana',
+            //'email' => 'afdal@kades.com',
+            //'role' => 'kades',
+            //'nik' => '3218000000000000',
+            //'password' => Hash::make('afdal_kades'),
+        //]);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        //Kependudukan Warga di kades
+        Kependudukan::create([
+            'nik' => '111222333444555', // Pastikan NIK ini sesuai
+            'tempat_lahir' => 'Bangka',
+            'tanggal_lahir' => '2002-05-12',
+            'jenis_kelamin' => 'Perempuan',
+            'alamat' => 'Jl. Merdeka No. 12',
+            'rt_rw' => '002/001',
+            'agama' => 'Islam',
+            'pekerjaan' => 'Mahasiswa',
+            'status_perkawinan' => 'Belum Kawin',
         ]);
-    }
+    } 
 }

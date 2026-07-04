@@ -46,4 +46,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function kependudukan()
+{
+    return $this->hasOne(Kependudukan::class, 'nik', 'nik');
+}
 }

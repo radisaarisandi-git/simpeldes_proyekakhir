@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\KependudukanController;
 use App\Http\Controllers\SuratController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -40,4 +41,6 @@ use Illuminate\Support\Facades\Route;
     Route::post('/admin/surat/{id}/status', [SuratController::class, 'updateStatus'])->name('admin.surat.status');
 
     Route::delete('/surat/{id}/hapus', [SuratController::class, 'destroy'])->name('surat.destroy');
+    
+    Route::get('/admin/kependudukan', [KependudukanController::class, 'index'])->name('kependudukan.index');
 });

@@ -12,7 +12,9 @@
                 <p class="card-text mt-2">
                     Melalui sistem ini, Anda dapat mengajukan Surat Domisili, KTP Sementara, dan Surat Pengantar secara online tanpa harus antre di kantor kelurahan.
                 </p>
-                <a href="#" class="btn btn-primary"><i class="fas fa-file-signature"></i> Mulai Ajukan Surat</a>
+                <a href="{{ route('warga.surat.create') }}" class="btn btn-primary">
+    <i class="fas fa-file-signature"></i> Mulai Ajukan Surat
+</a>
             </div>
         </div>
     </div>
