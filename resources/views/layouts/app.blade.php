@@ -9,12 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    {{-- TAMBAHAN KELOMPOK 1: Menyembunyikan paksa teks skip navigation bawaan Breeze --}}
-    <style>
-        .sr-only, [href="#main-content"], a[href*="skip"] {
-            display: none !important;
-        }
-    </style>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
