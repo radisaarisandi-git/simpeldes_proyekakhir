@@ -35,9 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/warga/surat/{id}/cetak', [SuratController::class, 'cetak'])->name('warga.surat.cetak');
 
     // --- PANEL ADMIN / KADES ---
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
+    Route::get('/warga/dashboard', [SuratController::class, 'dashboard'])
+        ->name('warga.dashboard');
 
     Route::get('/admin/kelola-surat', [SuratController::class, 'adminIndex'])->name('admin.surat.index');
     Route::post('/admin/surat/{id}/status', [SuratController::class, 'updateStatus'])->name('admin.surat.status');

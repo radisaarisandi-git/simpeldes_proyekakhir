@@ -235,7 +235,7 @@
 
         <div class="small-box bg-primary shadow" style="border-radius:18px;">
             <div class="inner">
-                <h3>3</h3>
+                <h3>{{ $riwayat_Surat->count() }}</h3>
                 <p>Total Pengajuan</p>
             </div>
 
@@ -252,7 +252,7 @@
 
         <div class="small-box bg-warning shadow" style="border-radius:18px;">
             <div class="inner">
-                <h3>1</h3>
+                <h3>{{ $riwayat_Surat->where('status','pending')->count() }}</h3>
                 <p>Menunggu</p>
             </div>
 
@@ -269,7 +269,7 @@
 
         <div class="small-box bg-success shadow" style="border-radius:18px;">
             <div class="inner">
-                <h3>2</h3>
+                <h3>{{ $riwayat_Surat->whereIn('status',['selesai','disetujui'])->count() }}</h3>
                 <p>Disetujui</p>
             </div>
 
@@ -286,7 +286,7 @@
 
         <div class="small-box bg-danger shadow" style="border-radius:18px;">
             <div class="inner">
-                <h3>0</h3>
+                <h3>{{ $riwayat_Surat->where('status','ditolak')->count() }}</h3>
                 <p>Ditolak</p>
             </div>
 
@@ -340,76 +340,40 @@
 
             </thead>
 
-            <tbody>
-
+           <tbody>
+                @forelse($riwayat_Surat->take(5) as $index => $surat)
                 <tr>
+                    <td>{{ $index + 1 }}</td>
 
-                    <td>1</td>
+                    <td>{{ $surat->jenis_surat }}</td>
 
-                    <td>
-
-                        <i class="fas fa-home text-primary mr-2"></i>
-
-                        Surat Domisili
-
-                    </td>
+                    <td>{{ $surat->created_at->format('d F Y') }}</td>
 
                     <td>
-
-                        02 Juli 2026
-
+                        @if($surat->status == 'pending')
+                            <span class="badge badge-warning">
+                                Menunggu
+                            </span>
+                        @elseif($surat->status == 'selesai' || $surat->status == 'disetujui')
+                            <span class="badge badge-success">
+                                Disetujui
+                            </span>
+                        @else
+                            <span class="badge badge-danger">
+                                Ditolak
+                            </span>
+                        @endif
                     </td>
-
-                    <td>
-
-                        <span class="badge badge-success px-3 py-2">
-
-                            <i class="fas fa-check-circle"></i>
-
-                            Disetujui
-
-                        </span>
-
-                    </td>
-
                 </tr>
-
-
-
+                @empty
                 <tr>
-
-                    <td>2</td>
-
-                    <td>
-
-                        <i class="fas fa-file-alt text-success mr-2"></i>
-
-                        Surat Serbaguna
-
+                    <td colspan="4" class="text-center text-muted">
+                        Belum ada pengajuan surat.
                     </td>
-
-                    <td>
-
-                        03 Juli 2026
-
-                    </td>
-
-                    <td>
-
-                        <span class="badge badge-warning px-3 py-2">
-
-                            <i class="fas fa-clock"></i>
-
-                            Menunggu
-
-                        </span>
-
-                    </td>
-
                 </tr>
-
+                @endforelse
             </tbody>
-
+            
         </table>
 
     </div>

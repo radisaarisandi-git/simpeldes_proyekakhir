@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('tanggal_lahir')->nullable();
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan'])->nullable();
             $table->string('alamat')->nullable();
-            $table->string('re_rw')->nullable();
+            $table->string('rt_rw')->nullable();
             $table->string('agama')->nullable();
             $table->string('pekerjaan')->nullable();
             $table->enum('status_perkawinan', ['Belum Kawin', 'Kawin', 'Cerai Hidup', 'Cerai Mati'])->nullable();

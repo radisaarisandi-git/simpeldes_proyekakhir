@@ -14,12 +14,75 @@
     <style>
         .skip-link,
         [href="#main-content"],
-        [href="#navigation"] {
-            display: none !important;
-            opacity: 0 !important;
-            visibility: hidden !important;
-            position: absolute !important;
-            top: -1000px !important;
+        [href="#navigation"]{
+            display:none!important;
+        }
+
+        .main-sidebar{
+            background:linear-gradient(180deg,#0f4c81,#083358)!important;
+        }
+
+        .brand-link{
+            background:rgba(255,255,255,.08);
+            text-align:center;
+            border-bottom:1px solid rgba(255,255,255,.15)!important;
+        }
+
+        .brand-text{
+            color:#fff!important;
+            font-size:22px;
+            font-weight:700!important;
+            letter-spacing:1px;
+        }
+
+        .user-panel{
+            border-bottom:1px solid rgba(255,255,255,.15)!important;
+            padding-bottom:18px!important;
+        }
+
+        .user-panel .image img{
+            width:42px;
+            height:42px;
+        }
+
+        .user-panel .info a{
+            color:white!important;
+            font-weight:600;
+        }
+
+        .nav-sidebar .nav-link{
+            border-radius:10px;
+            margin:5px 10px;
+            transition:.25s;
+        }
+
+        .nav-sidebar .nav-link:hover{
+            background:#1d73be!important;
+        }
+
+        .nav-sidebar .nav-link.active{
+            background:white!important;
+            color:#0f4c81!important;
+            font-weight:bold;
+        }
+
+        .main-header{
+            background:white;
+            box-shadow:0 3px 15px rgba(0,0,0,.08);
+        }
+
+        .content-wrapper{
+            background:#f4f6fb;
+        }
+
+        .content-header h1{
+            font-weight:700;
+        }
+
+        .main-footer{
+            background:white;
+            border-top:none;
+            box-shadow:0 -2px 10px rgba(0,0,0,.05);
         }
     </style>
 
@@ -51,22 +114,42 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <a href="{{ Auth::user()->role === 'warga' ? route('warga.dashboard') : route('admin.dashboard') }}"
                 class="brand-link">
-                <span class="brand-text font-weight-light"><b>SIMPELDES</b> Kel. 1</span>
+                <span class="brand-text">
+                <i class="fas fa-landmark mr-2"></i>
+                SIMPELDES
+                </span>
             </a>
 
             <div class="sidebar">
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="info">
-                        @if (Auth::user()->role === 'kades' || Auth::user()->role === 'staf')
-                            <a href="{{ route('admin.dashboard') }}" class="d-block text-wrap">
-                                {{ Auth::user()->name }}
-                            </a>
-                        @else
-                            <a href="{{ route('warga.dashboard') }}" class="d-block text-wrap">
-                                {{ Auth::user()->name }}
-                            </a>
-                        @endif
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center">
+
+                    <div class="image">
+                        <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=ffffff&color=0f4c81"
+                            class="img-circle elevation-2">
                     </div>
+
+                    <div class="info">
+
+                        @if(Auth::user()->role=='kades'||Auth::user()->role=='staf')
+
+                            <a href="{{ route('admin.dashboard') }}">
+                                {{ Auth::user()->name }}
+                                <br>
+                                <small>Administrator</small>
+                            </a>
+
+                        @else
+
+                            <a href="{{ route('warga.dashboard') }}">
+                                {{ Auth::user()->name }}
+                                <br>
+                                <small>Warga</small>
+                            </a>
+
+                        @endif
+
+                    </div>
+
                 </div>
 
                 <nav class="mt-2">
@@ -148,7 +231,9 @@
 
         <footer class="main-footer">
             <div class="float-right d-none d-sm-inline">Proyek Akhir Kelompok 1</div>
-            <strong>&copy; 2026 AdminLTE Laravel Manual.</strong>
+            <strong>SIMPELDES © 2026</strong>
+
+                Sistem Informasi Pelayanan Desa Digital
         </footer>
     </div>
 

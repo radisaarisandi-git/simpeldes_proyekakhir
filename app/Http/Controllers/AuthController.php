@@ -34,6 +34,7 @@ public function register(Request $request){
         // 2. Buat Akun User Baru ke tabel 'users'
         $user = User::create([
             'name'     => $request->name,
+            'nik'      => $request->nik,
             'email'    => $request->email,
             'password' => Hash::make($request->password),
             'role'     => 'warga' 
@@ -41,18 +42,17 @@ public function register(Request $request){
 
         // 3. Masukkan Data Kependudukan Lengkap sesuai Inputan Warga ke tabel 'kependudukans'
         Kependudukan::create([
-            'user_id'           => $user->id, // Langsung mengunci relasi dengan ID user di atas
-            'nik'               => $request->nik,
-            'tempat_lahir'      => $request->tempat_lahir,
-            'tanggal_lahir'     => $request->tanggal_lahir,
-            'jenis_kelamin'     => $request->jenis_kelamin,
-            'alamat'            => $request->alamat,
-            'rt_rw'             => $request->rt_rw,
-            'agama'             => $request->agama,
-            'pekerjaan'         => $request->pekerjaan,
+            'nik' => $request->nik,
+            'tempat_lahir' => $request->tempat_lahir,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'alamat' => $request->alamat,
+            're_rw' => $request->rt_rw,
+            'agama' => $request->agama,
+            'pekerjaan' => $request->pekerjaan,
             'status_perkawinan' => $request->status_perkawinan,
         ]);
-
+        
         return redirect()->route('login')->with('success', 'Registrasi Berhasil! Silahkan Login');
     }
 

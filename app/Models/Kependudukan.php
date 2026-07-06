@@ -14,16 +14,15 @@ class Kependudukan extends Model
 
     // 1. Tambahkan 'user_id' ke dalam fillable agar diizinkan masuk ke database saat register
     protected $fillable = [
-        'user_id', // INI WAJIB ADA!
-        'nik', 
-        'tempat_lahir', 
-        'tanggal_lahir', 
-        'jenis_kelamin', 
-        'alamat', 
-        'rt_rw', 
-        'agama', 
-        'pekerjaan', 
-        'status_perkawinan'
+        'nik',
+        'tempat_lahir',
+        'tanggal_lahir',
+        'jenis_kelamin',
+        'alamat',
+        're_rw',
+        'agama',
+        'pekerjaan',
+        'status_perkawinan',
     ];
 
     /**
