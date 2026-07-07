@@ -9,25 +9,24 @@ class Kependudukan extends Model
 {
     use HasFactory;
 
-    // Nama tabel di database
     protected $table = 'kependudukans';
 
-    // 1. Tambahkan 'user_id' ke dalam fillable agar diizinkan masuk ke database saat register
+    // WAJIB masukkan 'user_id' di sini agar bisa disimpan lewat AuthController
     protected $fillable = [
-        'nik',
-        'tempat_lahir',
-        'tanggal_lahir',
-        'jenis_kelamin',
-        'alamat',
-        're_rw',
-        'agama',
-        'pekerjaan',
-        'status_perkawinan',
+        'user_id', 
+        'nik', 
+        'tempat_lahir', 
+        'tanggal_lahir', 
+        'jenis_kelamin', 
+        'alamat', 
+        'rt_rw', 
+        'agama', 
+        'pekerjaan', 
+        'status_perkawinan'
     ];
 
     /**
-     * 2. Perbaiki fungsi relasi agar membaca 'user_id' sesuai ERD database kita
-     * Hubungan kebalikan: Data kependudukan ini miliknya satu User
+     * Relasi balik ke tabel Users
      */
     public function user()
     {

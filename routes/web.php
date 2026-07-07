@@ -29,6 +29,11 @@ Route::middleware('auth')->group(function () {
         return view('warga.dashboard');
     })->name('warga.dashboard');
 
+    // --- PANEL ADMIN / KADES ---
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+})->name('admin.dashboard'); // <-- PASTIKAN HURUF DAN TITIKNYA SAMA PERSIS!
+
     Route::get('/warga/riwayat-surat', [SuratController::class, 'index'])->name('warga.surat.index');
     Route::get('/warga/ajukan-surat', [SuratController::class, 'create'])->name('warga.surat.create');
     Route::post('/warga/ajukan-surat', [SuratController::class, 'store'])->name('warga.surat.store');

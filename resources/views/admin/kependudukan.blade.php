@@ -35,19 +35,26 @@
                     <tr>
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $row->nik }}</td>
-                        <td>{{ $row->user->name ?? 'Warga Tidak Terdaftar' }}</td>
+                        
+                        <td>
+                            {{ $row->name ?? $row->user->name ?? $row->User->name ?? 'Warga Tidak Terdaftar' }}
+                        </td>
+                        
                         <td>{{ $row->jenis_kelamin }}</td>
                         <td>{{ $row->tempat_lahir }}, {{ $row->tanggal_lahir }}</td>
-                        <td>{{ $row->alamat }} (RT/RW: {{ $row->rt_rw }})</td>
+                        
+                        <td>
+                            {{ $row->alamat }} 
+                            (RT/RW: {{ $row->rt_rw ?? $row->re_rw ?? '-' }})
+                        </td>
+                        
                         <td>{{ $row->pekerjaan }}</td>
                         <td class="text-center">
                             <div class="d-flex justify-content-center">
-                                <!-- Tombol Edit -->
                                 <a href="{{ route('kependudukan.edit', $row->id) }}" class="btn btn-warning btn-sm mr-2">
                                     Edit
                                 </a>
 
-                                <!-- Tombol Hapus -->
                                 <form action="{{ route('kependudukan.destroy', $row->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus warga ini beserta akun loginnya?')">
                                     @csrf
                                     @method('DELETE')

@@ -15,46 +15,46 @@ class AuthController extends Controller
     }
 
 public function register(Request $request){
-        // 1. Validasi Semua Inputan Lengkap dari Form Warga
-        $request->validate([
-            'name'              => 'required|string|max:255',
-            'nik'               => 'required|string|max:16|unique:kependudukans,nik',
-            'tempat_lahir'      => 'required|string|max:255',
-            'tanggal_lahir'     => 'required|date',
-            'jenis_kelamin'     => 'required|string',
-            'alamat'            => 'required|string|max:255',
-            'rt_rw'             => 'required|string|max:255',
-            'agama'             => 'required|string|max:255',
-            'pekerjaan'         => 'required|string|max:255',
-            'status_perkawinan' => 'required|string',
-            'email'             => 'required|string|email|unique:users,email',
-            'password'          => 'required|string|min:6|confirmed',
-        ]);
+    // 1. Validasi Semua Inputan Lengkap dari Form Warga
+    $request->validate([
+        'name'              => 'required|string|max:255',
+        'nik'               => 'required|string|max:16|unique:kependudukans,nik',
+        'tempat_lahir'      => 'required|string|max:255',
+        'tanggal_lahir'     => 'required|date',
+        'jenis_kelamin'     => 'required|string',
+        'alamat'            => 'required|string|max:255',
+        'rt_rw'             => 'required|string|max:255',
+        'agama'             => 'required|string|max:255',
+        'pekerjaan'         => 'required|string|max:255',
+        'status_perkawinan' => 'required|string',
+        'email'             => 'required|string|email|unique:users,email',
+        'password'          => 'required|string|min:6|confirmed',
+    ]);
 
-        // 2. Buat Akun User Baru ke tabel 'users'
-        $user = User::create([
-            'name'     => $request->name,
-            'nik'      => $request->nik,
-            'email'    => $request->email,
-            'password' => Hash::make($request->password),
-            'role'     => 'warga' 
-        ]);
+    // 2. Buat Akun User Baru (Murni Tanpa NIK di tabel users)
+    $user = User::create([
+        'name'     => $request->name,
+        'email'    => $request->email,
+        'password' => Hash::make($request->password),
+        'role'     => 'warga' 
+    ]);
 
-        // 3. Masukkan Data Kependudukan Lengkap sesuai Inputan Warga ke tabel 'kependudukans'
-        Kependudukan::create([
-            'nik' => $request->nik,
-            'tempat_lahir' => $request->tempat_lahir,
-            'tanggal_lahir' => $request->tanggal_lahir,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'alamat' => $request->alamat,
-            're_rw' => $request->rt_rw,
-            'agama' => $request->agama,
-            'pekerjaan' => $request->pekerjaan,
-            'status_perkawinan' => $request->status_perkawinan,
-        ]);
-        
-        return redirect()->route('login')->with('success', 'Registrasi Berhasil! Silahkan Login');
-    }
+    // 3. Masukkan Data Kependudukan Lengkap (Sertakan user_id agar terhubung)
+    Kependudukan::create([
+        'user_id'           => $user->id, // <-- UTAMA: Ambil ID dari user yang baru dibuat di atas
+        'nik'               => $request->nik,
+        'tempat_lahir'      => $request->tempat_lahir,
+        'tanggal_lahir'     => $request->tanggal_lahir,
+        'jenis_kelamin'     => $request->jenis_kelamin,
+        'alamat'            => $request->alamat,
+        'rt_rw'             => $request->rt_rw, 
+        'agama'             => $request->agama,
+        'pekerjaan'         => $request->pekerjaan,
+        'status_perkawinan' => $request->status_perkawinan,
+    ]);
+    
+    return redirect()->route('login')->with('success', 'Registrasi Berhasil! Silahkan Login');
+}
 
     public function showLogin(){
         return view('auth.login');
