@@ -26,7 +26,8 @@ class SuratController extends Controller
      */
     public function index()
     {
-        $riwayat_Surat = Surat::where('user_id', Auth::id())
+        $riwayat_Surat = Surat::with('user.kependudukan')
+            ->where('user_id', Auth::id())
             ->latest()
             ->get();
 
@@ -52,10 +53,69 @@ class SuratController extends Controller
             'jenis_surat' => 'required|string',
         ]);
 
+        // Validasi sesuai jenis surat
+if ($request->jenis_surat == 'Surat Keterangan Domisili') {
+
+    $request->validate([
+        'alamat_domisili' => 'required',
+        'keperluan_domisili' => 'required',
+    ]);
+
+}
+
+if ($request->jenis_surat == 'Surat Keterangan Serbaguna') {
+
+    $request->validate([
+        'keperluan' => 'required',
+    ]);
+
+}
+
+if ($request->jenis_surat == 'Surat Keterangan Usaha') {
+
+    $request->validate([
+        'nama_usaha' => 'required',
+        'jenis_usaha' => 'required',
+        'alamat_usaha' => 'required',
+        'lama_usaha' => 'required',
+        'keperluan_usaha' => 'required',
+    ]);
+
+}
+
+if ($request->jenis_surat == 'Surat Keterangan Tidak Mampu') {
+
+    $request->validate([
+        'penghasilan' => 'required|numeric',
+        'jumlah_tanggungan' => 'required|integer',
+        'keperluan_sktm' => 'required',
+    ]);
+
+}
+
+if ($request->jenis_surat == 'Surat Pengantar KTP') {
+
+    $request->validate([
+        'jenis_pengajuan_ktp' => 'required',
+        'alasan_ktp' => 'required',
+    ]);
+
+}
+
+if ($request->jenis_surat == 'Surat Pengantar KK') {
+
+    $request->validate([
+        'jenis_pengajuan_kk' => 'required',
+        'alasan_kk' => 'required',
+    ]);
+
+}
+
         $dataTambahan = $request->except([
             '_token',
             'jenis_surat'
         ]);
+        
 
         Surat::create([
             'user_id'        => Auth::id(),

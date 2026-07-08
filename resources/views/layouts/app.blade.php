@@ -111,14 +111,16 @@
             </ul>
         </nav>
 
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <a href="{{ Auth::user()->role === 'warga' ? route('warga.dashboard') : route('admin.dashboard') }}"
-                class="brand-link">
-                <span class="brand-text">
-                <i class="fas fa-landmark mr-2"></i>
-                SIMPELDES
-                </span>
-            </a>
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <a href="{{ Auth::user()->role === 'warga' ? route('warga.dashboard') : route('admin.dashboard') }}"
+       class="brand-link">
+
+        <span class="brand-text font-weight-bold">
+            <i class="fas fa-house-user mr-2" style="color:#6EDC5F;"></i>
+            <span style="color:#FFFFFF;">SIMPEL</span><span style="color:#6EDC5F;">DES</span>
+        </span>
+
+    </a>
 
             <div class="sidebar">
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center">

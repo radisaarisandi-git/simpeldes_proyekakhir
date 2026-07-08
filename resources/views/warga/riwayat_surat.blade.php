@@ -274,50 +274,49 @@
 
                 <hr>
 
+                <div class="card card-outline card-primary mb-3">
+
+            <div class="card-header">
+
+                <strong>
+                    <i class="fas fa-user"></i>
+                    Data Pemohon
+                </strong>
+
+            </div>
+
+            <div class="card-body">
+
                 <div class="row">
-                                        @if(is_array($surat->data_tambahan))
 
-                        @foreach($surat->data_tambahan as $label => $value)
+                    <div class="col-md-6">
 
-                            @if($value != '')
+                        <p>
+                            <strong>Nama</strong><br>
+                            {{ $surat->user->name }}
+                        </p>
 
-                                <div class="col-md-6 mb-3">
+                        <p>
+                            <strong>NIK</strong><br>
+                            {{ optional($surat->user->kependudukan)->nik ?? '-' }}
+                        </p>
 
-                                    <div class="border rounded p-3 h-100 bg-light">
+                    </div>
 
-                                        <small class="text-muted d-block">
+                    <div class="col-md-6">
 
-                                            {{ ucwords(str_replace('_',' ',$label)) }}
+                        <p>
+                            <strong>Pekerjaan</strong><br>
+                            {{ optional($surat->user->kependudukan)->pekerjaan ?? '-' }}
+                        </p>
 
-                                        </small>
+                        <p>
+                            <strong>Alamat</strong><br>
+                            {{ optional($surat->user->kependudukan)->alamat ?? '-' }}
+                            {{ optional($surat->user->kependudukan)->rt_rw ? 'RT/RW '.optional($surat->user->kependudukan)->rt_rw : '' }}
+                        </p>
 
-                                        <strong>
-
-                                            {{ $value }}
-
-                                        </strong>
-
-                                    </div>
-
-                                </div>
-
-                            @endif
-
-                        @endforeach
-
-                    @else
-
-                        <div class="col-12">
-
-                            <div class="alert alert-secondary mb-0">
-
-                                Tidak ada data tambahan.
-
-                            </div>
-
-                        </div>
-
-                    @endif
+                    </div>
 
                 </div>
 
@@ -325,42 +324,266 @@
 
         </div>
 
-    </div>
+  <div class="row">
 
-    @empty
+    @if($surat->jenis_surat == 'Surat Keterangan Usaha')
 
-    <div class="card shadow">
-
-        <div class="card-body text-center py-5">
-
-            <i class="fas fa-folder-open fa-5x text-secondary mb-4"></i>
-
-            <h3>
-
-                Belum Ada Pengajuan Surat
-
-            </h3>
-
-            <p class="text-muted">
-
-                Anda belum pernah mengajukan surat.
-
-            </p>
-
-            <a href="{{ route('warga.surat.create') }}"
-               class="btn btn-primary btn-lg">
-
-                <i class="fas fa-plus-circle"></i>
-
-                Ajukan Surat Sekarang
-
-            </a>
-
+        <div class="col-12">
+            <div class="card card-outline card-success mb-3">
+                <div class="card-header">
+                    <strong>
+                        <i class="fas fa-file-alt"></i>
+                        Data Surat
+                    </strong>
+                </div>
+            </div>
         </div>
 
+        <div class="col-md-6 mb-3">
+            <div class="border rounded p-3 h-100 bg-light">
+                <small class="text-muted">Nama Usaha</small>
+                <h5 class="mb-0">
+                    {{ $surat->data_tambahan['nama_usaha'] ?? '-' }}
+                </h5>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="border rounded p-3 h-100 bg-light">
+                <small class="text-muted">Jenis Usaha</small>
+                <h5 class="mb-0">
+                    {{ $surat->data_tambahan['jenis_usaha'] ?? '-' }}
+                </h5>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="border rounded p-3 h-100 bg-light">
+                <small class="text-muted">Alamat Usaha</small>
+                <h5 class="mb-0">
+                    {{ $surat->data_tambahan['alamat_usaha'] ?? '-' }}
+                </h5>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="border rounded p-3 h-100 bg-light">
+                <small class="text-muted">Lama Usaha</small>
+                <h5 class="mb-0">
+                    {{ $surat->data_tambahan['lama_usaha'] ?? '-' }}
+                </h5>
+            </div>
+        </div>
+
+        <div class="col-12 mb-3">
+            <div class="border rounded p-3 bg-light">
+                <small class="text-muted">Keperluan Usaha</small>
+                <h5 class="mb-0">
+                    {{ $surat->data_tambahan['keperluan_usaha'] ?? '-' }}
+                </h5>
+            </div>
+        </div>
+
+    @elseif($surat->jenis_surat == 'Surat Keterangan Tidak Mampu')
+
+        <div class="col-12">
+            <div class="card card-outline card-success mb-3">
+                <div class="card-header">
+                    <strong>
+                        <i class="fas fa-hand-holding-heart"></i>
+                        Data Surat
+                    </strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="border rounded p-3 h-100 bg-light">
+                <small class="text-muted">Penghasilan Per Bulan</small>
+                <h5 class="mb-0">
+                    Rp {{ number_format($surat->data_tambahan['penghasilan'] ?? 0,0,',','.') }}
+                </h5>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="border rounded p-3 h-100 bg-light">
+                <small class="text-muted">Jumlah Tanggungan</small>
+                <h5 class="mb-0">
+                    {{ $surat->data_tambahan['jumlah_tanggungan'] ?? '-' }} Orang
+                </h5>
+            </div>
+        </div>
+
+        <div class="col-12 mb-3">
+            <div class="border rounded p-3 h-100 bg-light">
+                <small class="text-muted">Keperluan Pengajuan</small>
+                <h5 class="mb-0">
+                    {{ $surat->data_tambahan['keperluan_sktm'] ?? '-' }}
+                </h5>
+            </div>
+        </div>
+
+    @elseif($surat->jenis_surat == 'Surat Keterangan Domisili')
+
+        <div class="col-12">
+            <div class="card card-outline card-success mb-3">
+                <div class="card-header">
+                    <strong>
+                        <i class="fas fa-home"></i>
+                        Data Surat
+                    </strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 mb-3">
+            <div class="border rounded p-3 h-100 bg-light">
+                <small class="text-muted">Alamat Domisili</small>
+                <h5 class="mb-0">
+                    {{ $surat->data_tambahan['alamat_domisili'] ?? '-' }}
+                </h5>
+            </div>
+        </div>
+
+        <div class="col-12 mb-3">
+            <div class="border rounded p-3 h-100 bg-light">
+                <small class="text-muted">Keperluan Pembuatan Surat</small>
+                <h5 class="mb-0">
+                    {{ $surat->data_tambahan['keperluan_domisili'] ?? '-' }}
+                </h5>
+            </div>
+        </div>
+
+    @elseif($surat->jenis_surat == 'Surat Pengantar KTP')
+
+        <div class="col-12">
+            <div class="card card-outline card-success mb-3">
+                <div class="card-header">
+                    <strong>
+                        <i class="fas fa-id-card"></i>
+                        Data Surat
+                    </strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="border rounded p-3 h-100 bg-light">
+                <small class="text-muted">Jenis Pengajuan</small>
+                <h5 class="mb-0">
+                    {{ $surat->data_tambahan['jenis_pengajuan_ktp'] ?? '-' }}
+                </h5>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="border rounded p-3 h-100 bg-light">
+                <small class="text-muted">Alasan Pengajuan</small>
+                <h5 class="mb-0">
+                    {{ $surat->data_tambahan['alasan_ktp'] ?? '-' }}
+                </h5>
+            </div>
+        </div>
+
+    @elseif($surat->jenis_surat == 'Surat Pengantar KK')
+
+        <div class="col-12">
+            <div class="card card-outline card-success mb-3">
+                <div class="card-header">
+                    <strong>
+                        <i class="fas fa-users"></i>
+                        Data Surat
+                    </strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="border rounded p-3 h-100 bg-light">
+                <small class="text-muted">Jenis Pengajuan</small>
+                <h5 class="mb-0">
+                    {{ $surat->data_tambahan['jenis_pengajuan_kk'] ?? '-' }}
+                </h5>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="border rounded p-3 h-100 bg-light">
+                <small class="text-muted">Alasan Pengajuan</small>
+                <h5 class="mb-0">
+                    {{ $surat->data_tambahan['alasan_kk'] ?? '-' }}
+                </h5>
+            </div>
+        </div>
+
+    @elseif($surat->jenis_surat == 'Surat Keterangan Serbaguna')
+
+        <div class="col-12">
+            <div class="card card-outline card-success mb-3">
+                <div class="card-header">
+                    <strong>
+                        <i class="fas fa-file-alt"></i>
+                        Data Surat
+                    </strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 mb-3">
+            <div class="border rounded p-3 h-100 bg-light">
+                <small class="text-muted">Keperluan</small>
+                <h5 class="mb-0">
+                    {{ $surat->data_tambahan['keperluan'] ?? '-' }}
+                </h5>
+            </div>
+        </div>
+
+    @else
+
+        <div class="col-12">
+            <div class="alert alert-info">
+                Detail surat ini belum tersedia.
+            </div>
+        </div>
+
+ @endif
+
+</div> {{-- end row --}}
+
+            </div> {{-- end card-body --}}
+        </div> {{-- end card --}}
+
+@empty
+
+<div class="card shadow">
+
+    <div class="card-body text-center py-5">
+
+        <i class="fas fa-folder-open fa-5x text-secondary mb-4"></i>
+
+        <h3>Belum Ada Pengajuan Surat</h3>
+
+        <p class="text-muted">
+
+            Anda belum pernah mengajukan surat.
+
+        </p>
+
+        <a href="{{ route('warga.surat.create') }}"
+           class="btn btn-primary btn-lg">
+
+            <i class="fas fa-plus-circle"></i>
+
+            Ajukan Surat Sekarang
+
+        </a>
+
     </div>
 
-    @endforelse
+</div>
+
+@endforelse
 
 </div>
 

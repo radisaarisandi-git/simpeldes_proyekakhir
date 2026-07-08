@@ -96,188 +96,73 @@
                                 Surat Keterangan Domisili
                             </option>
 
+                            <option value="Surat Keterangan Usaha">
+                                Surat Keterangan Usaha
+                            </option>
+
+                            <option value="Surat Keterangan Tidak Mampu">
+                                Surat Keterangan Tidak Mampu (SKTM)
+                            </option>
+
+                            <option value="Surat Pengantar KTP">
+                                Surat Pengantar KTP
+                            </option>
+
+                            <option value="Surat Pengantar KK">
+                                Surat Pengantar KK
+                            </option>
+
                         </select>
 
                     </div>
 
                     {{-- FORM SERBAGUNA --}}
-                    <div id="form_serbaguna"
-                         style="display:none;">
+                    <div id="form_serbaguna" style="display:none;">
 
                         <div class="card card-outline card-primary">
 
                             <div class="card-header">
 
                                 <h5 class="mb-0">
-
-                                    <i class="fas fa-user"></i>
-
-                                    Data Pemohon
-
+                                    <i class="fas fa-file-alt"></i>
+                                    Surat Keterangan Serbaguna
                                 </h5>
 
                             </div>
 
                             <div class="card-body">
 
-                                <div class="row">
+                                <div class="alert alert-info">
 
-                                    <div class="col-md-6">
-
-                                        <div class="form-group">
-
-                                            <label>NIK</label>
-
-                                            <div class="input-group">
-
-                                                <div class="input-group-prepend">
-
-                                                    <span class="input-group-text">
-
-                                                        <i class="fas fa-id-card"></i>
-
-                                                    </span>
-
-                                                </div>
-
-                                                <input
-                                                    type="text"
-                                                    name="nik"
-                                                    id="input_nik"
-                                                    class="form-control"
-                                                    placeholder="1905xxxxxxxxxxxx">
-
-                                            </div>
-
-                                        </div>
-
-                                        <div class="form-group">
-
-                                            <label>Nama Lengkap</label>
-
-                                            <div class="input-group">
-
-                                                <div class="input-group-prepend">
-
-                                                    <span class="input-group-text">
-
-                                                        <i class="fas fa-user"></i>
-
-                                                    </span>
-
-                                                </div>
-
-                                                <input
-                                                    type="text"
-                                                    name="nama"
-                                                    id="input_nama"
-                                                    class="form-control"
-                                                    placeholder="Nama sesuai KTP">
-
-                                            </div>
-
-                                        </div>
-
-                                        <div class="form-group">
-
-                                            <label>Tempat, Tanggal Lahir</label>
-
-                                            <input
-                                                type="text"
-                                                name="ttl"
-                                                id="input_ttl"
-                                                class="form-control"
-                                                placeholder="Contoh : Sungailiat, 10-05-2005">
-
-                                        </div>
-
-                                        <div class="form-group">
-
-                                            <label>Jenis Kelamin</label>
-
-                                            <select
-                                                name="jenis_kelamin"
-                                                class="form-control">
-
-                                                <option>Laki-Laki</option>
-                                                <option>Perempuan</option>
-
-                                            </select>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-md-6">
-
-                                        <div class="form-group">
-
-                                            <label>Agama</label>
-
-                                            <input
-                                                type="text"
-                                                name="agama"
-                                                id="input_agama"
-                                                class="form-control">
-
-                                        </div>
-
-                                        <div class="form-group">
-
-                                            <label>Status Perkawinan</label>
-
-                                            <select
-                                                name="status_perkawinan"
-                                                class="form-control">
-
-                                                <option>Belum Kawin</option>
-                                                <option>Kawin</option>
-                                                <option>Cerai</option>
-
-                                            </select>
-
-                                        </div>
-
-                                        <div class="form-group">
-
-                                            <label>Pekerjaan</label>
-
-                                            <input
-                                                type="text"
-                                                name="pekerjaan"
-                                                id="input_pekerjaan"
-                                                class="form-control">
-
-                                        </div>
-
-                                        <div class="form-group">
-
-                                            <label>Alamat Lengkap</label>
-
-                                            <textarea
-                                                name="alamat"
-                                                id="input_alamat"
-                                                rows="3"
-                                                class="form-control"></textarea>
-
-                                        </div>
-
-                                    </div>
+                                    <i class="fas fa-info-circle"></i>
+                                    <strong>Informasi</strong><br>
+                                    Data identitas pemohon akan diambil otomatis dari data kependudukan yang telah didaftarkan.
 
                                 </div>
 
-                                <hr>
-
                                 <div class="form-group">
 
-                                    <label>Keperluan</label>
+                                    <label>Keperluan Surat <span class="text-danger">*</span></label>
 
                                     <textarea
                                         name="keperluan"
                                         id="input_keperluan"
+                                        rows="4"
+                                        class="form-control"
+                                        placeholder="Contoh : Persyaratan Beasiswa, Melamar Pekerjaan, Pembukaan Rekening Bank, dll."></textarea>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label>Keterangan Tambahan <small class="text-muted">(Opsional)</small></label>
+
+                                    <textarea
+                                        name="keterangan_serbaguna"
+                                        id="input_keterangan_serbaguna"
                                         rows="3"
                                         class="form-control"
-                                        placeholder="Tuliskan tujuan pembuatan surat..."></textarea>
+                                        placeholder="Tambahkan keterangan jika diperlukan..."></textarea>
 
                                 </div>
 
@@ -286,7 +171,301 @@
                         </div>
 
                     </div>
-                                        {{-- FORM DOMISILI --}}
+
+                    {{-- FORM USAHA --}}
+                    <div id="form_usaha" style="display:none;">
+
+                        <div class="card card-outline card-warning">
+
+                            <div class="card-header">
+
+                                <h5 class="mb-0">
+
+                                    <i class="fas fa-store"></i>
+
+                                    Data Usaha
+
+                                </h5>
+
+                            </div>
+
+                            <div class="card-body">
+
+                                <div class="form-group">
+
+                                    <label>Nama Usaha</label>
+
+                                    <input
+                                        type="text"
+                                        name="nama_usaha"
+                                        id="input_nama_usaha"
+                                        class="form-control"
+                                        placeholder="Contoh : Toko Sembako Maju">
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label>Jenis Usaha</label>
+
+                                    <input
+                                        type="text"
+                                        name="jenis_usaha"
+                                        id="input_jenis_usaha"
+                                        class="form-control"
+                                        placeholder="Contoh : Perdagangan">
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label>Alamat Usaha</label>
+
+                                    <textarea
+                                        name="alamat_usaha"
+                                        id="input_alamat_usaha"
+                                        rows="3"
+                                        class="form-control"></textarea>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label>Lama Usaha</label>
+
+                                    <input
+                                        type="text"
+                                        name="lama_usaha"
+                                        id="input_lama_usaha"
+                                        class="form-control"
+                                        placeholder="Contoh : 3 Tahun">
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label>Keperluan</label>
+
+                                    <textarea
+                                        name="keperluan_usaha"
+                                        id="input_keperluan_usaha"
+                                        rows="3"
+                                        class="form-control"></textarea>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    {{-- FORM SKTM --}}
+                    <div id="form_sktm" style="display:none;">
+
+                        <div class="card card-outline card-danger">
+
+                            <div class="card-header">
+
+                                <h5 class="mb-0">
+
+                                    <i class="fas fa-heart"></i>
+
+                                    Data SKTM
+
+                                </h5>
+
+                            </div>
+
+                            <div class="card-body">
+
+                                <div class="form-group">
+
+                                    <label>Penghasilan per Bulan</label>
+
+                                    <input
+                                        type="number"
+                                        name="penghasilan"
+                                        id="input_penghasilan"
+                                        class="form-control"
+                                        placeholder="Contoh : 1500000">
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label>Jumlah Tanggungan</label>
+
+                                    <input
+                                        type="number"
+                                        name="jumlah_tanggungan"
+                                        id="input_tanggungan"
+                                        class="form-control"
+                                        placeholder="Contoh : 3">
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label>Keperluan</label>
+
+                                    <textarea
+                                        name="keperluan_sktm"
+                                        id="input_keperluan_sktm"
+                                        rows="3"
+                                        class="form-control"
+                                        placeholder="Contoh : Pengajuan Beasiswa"></textarea>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label>Keterangan Tambahan</label>
+
+                                    <textarea
+                                        name="keterangan_sktm"
+                                        id="input_keterangan_sktm"
+                                        rows="3"
+                                        class="form-control"
+                                        placeholder="Opsional"></textarea>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    {{-- FORM PENGANTAR KTP --}}
+                    <div id="form_ktp" style="display:none;">
+
+                        <div class="card card-outline card-info">
+
+                            <div class="card-header">
+
+                                <h5 class="mb-0">
+
+                                    <i class="fas fa-id-card"></i>
+
+                                    Pengajuan KTP
+
+                                </h5>
+
+                            </div>
+
+                            <div class="card-body">
+
+                                <div class="form-group">
+
+                                    <label>Jenis Pengajuan</label>
+
+                                    <select
+                                        name="jenis_pengajuan_ktp"
+                                        id="input_jenis_pengajuan_ktp"
+                                        class="form-control">
+
+                                        <option value="">-- Pilih --</option>
+                                        <option value="Pembuatan Baru">Pembuatan Baru</option>
+                                        <option value="Perpanjangan">Perpanjangan</option>
+                                        <option value="Rusak">Rusak</option>
+                                        <option value="Hilang">Hilang</option>
+
+                                    </select>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label>Alasan Pengajuan</label>
+
+                                    <textarea
+                                        name="alasan_ktp"
+                                        id="input_alasan_ktp"
+                                        rows="3"
+                                        class="form-control"
+                                        placeholder="Tuliskan alasan pengajuan"></textarea>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    {{-- FORM PENGANTAR KK --}}
+                    <div id="form_kk" style="display:none;">
+
+                        <div class="card card-outline card-primary">
+
+                            <div class="card-header">
+
+                                <h5 class="mb-0">
+
+                                    <i class="fas fa-users"></i>
+
+                                    Pengajuan Kartu Keluarga (KK)
+
+                                </h5>
+
+                            </div>
+
+                            <div class="card-body">
+
+                                <div class="form-group">
+
+                                    <label>Jenis Pengajuan KK</label>
+
+                                    <select
+                                        name="jenis_pengajuan_kk"
+                                        id="input_jenis_pengajuan_kk"
+                                        class="form-control">
+
+                                        <option value="">-- Pilih Jenis Pengajuan --</option>
+                                        <option value="KK Baru">KK Baru</option>
+                                        <option value="Penambahan Anggota Keluarga">Penambahan Anggota Keluarga</option>
+                                        <option value="Pengurangan Anggota Keluarga">Pengurangan Anggota Keluarga</option>
+                                        <option value="Perubahan Data KK">Perubahan Data KK</option>
+                                        <option value="KK Hilang/Rusak">KK Hilang / Rusak</option>
+
+                                    </select>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label>Alasan Pengajuan</label>
+
+                                    <textarea
+                                        name="alasan_kk"
+                                        id="input_alasan_kk"
+                                        rows="3"
+                                        class="form-control"
+                                        placeholder="Tuliskan alasan pengajuan"></textarea>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label>Keterangan Tambahan</label>
+
+                                    <textarea
+                                        name="keterangan_kk"
+                                        id="input_keterangan_kk"
+                                        rows="3"
+                                        class="form-control"
+                                        placeholder="Opsional"></textarea>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    {{-- FORM DOMISILI --}}
                     <div id="form_domisili" style="display:none;">
 
                         <div class="card card-outline card-success">
@@ -492,15 +671,13 @@
 const selectJenis = document.getElementById('jenis_surat');
 const formDomisili = document.getElementById('form_domisili');
 const formSerbaguna = document.getElementById('form_serbaguna');
+const formUsaha = document.getElementById('form_usaha');
+const formKTP = document.getElementById('form_ktp');
+const formKK = document.getElementById('form_kk');
+const formSKTM = document.getElementById('form_sktm');
 
 const inputsSerbaguna = [
-'input_nik',
-'input_nama',
-'input_ttl',
-'input_agama',
-'input_pekerjaan',
-'input_alamat',
-'input_keperluan'
+    'input_keperluan'
 ];
 
 const inputsDomisili = [
@@ -508,10 +685,38 @@ const inputsDomisili = [
 'input_keperluan_domisili'
 ];
 
+const inputsUsaha = [
+'input_nama_usaha',
+'input_jenis_usaha',
+'input_alamat_usaha',
+'input_lama_usaha',
+'input_keperluan_usaha'
+];
+
+const inputsSKTM = [
+'input_penghasilan',
+'input_tanggungan',
+'input_keperluan_sktm'
+];
+
+const inputsKTP = [
+'input_jenis_pengajuan_ktp',
+'input_alasan_ktp'
+];
+
+const inputsKK = [
+'input_jenis_pengajuan_kk',
+'input_alasan_kk'
+];
+
 function tampilkanForm(){
 
     formDomisili.style.display='none';
     formSerbaguna.style.display='none';
+    formUsaha.style.display='none';
+    formSKTM.style.display='none';
+    formKTP.style.display='none';
+    formKK.style.display='none';
 
     inputsSerbaguna.forEach(id=>{
         document.getElementById(id).required=false;
@@ -519,6 +724,22 @@ function tampilkanForm(){
 
     inputsDomisili.forEach(id=>{
         document.getElementById(id).required=false;
+    });
+
+    inputsUsaha.forEach(id=>{
+    document.getElementById(id).required=false;
+    });
+
+    inputsSKTM.forEach(id=>{
+    document.getElementById(id).required=false;
+    });
+
+    inputsKTP.forEach(id=>{
+    document.getElementById(id).required=false;
+    });
+
+    inputsKK.forEach(id=>{
+    document.getElementById(id).required=false;
     });
 
     if(selectJenis.value==="Surat Keterangan Domisili"){
@@ -536,6 +757,55 @@ function tampilkanForm(){
         formSerbaguna.style.display='block';
 
         inputsSerbaguna.forEach(id=>{
+            document.getElementById(id).required=true;
+        });
+
+    }
+
+    if(selectJenis.value==="Surat Keterangan Usaha"){
+
+        formUsaha.style.display='block';
+
+        inputsUsaha.forEach(id=>{
+            document.getElementById(id).required=true;
+        });
+
+    }
+
+    if(selectJenis.value==="Surat Keterangan SKTM"){
+
+        formSKTM.style.display='block';
+
+        inputsSKTM.forEach(id=>{
+            document.getElementById(id).required=true;
+        });
+
+    }
+
+    if(selectJenis.value==="Surat Keterangan Tidak Mampu"){
+
+        formSKTM.style.display='block';
+
+        inputsSKTM.forEach(id=>{
+            document.getElementById(id).required=true;
+        });
+    }
+
+    if(selectJenis.value==="Surat Pengantar KTP"){
+
+        formKTP.style.display='block';
+
+        inputsKTP.forEach(id=>{
+            document.getElementById(id).required=true;
+        });
+
+    }
+
+    if(selectJenis.value==="Surat Pengantar KK"){
+
+        formKK.style.display='block';
+
+        inputsKK.forEach(id=>{
             document.getElementById(id).required=true;
         });
 

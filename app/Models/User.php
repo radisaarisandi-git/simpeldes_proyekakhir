@@ -47,8 +47,8 @@ class User extends Authenticatable
         ];
     }
 
-    public function kependudukan()
+public function kependudukan()
 {
-    return $this->hasOne(Kependudukan::class, 'nik', 'nik');
+    return $this->hasOne(Kependudukan::class);
 }
 }
