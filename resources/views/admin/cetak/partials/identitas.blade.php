@@ -5,16 +5,9 @@
 
 </p>
 
-<br>
 
 <table width="100%" style="font-family:'Times New Roman'; font-size:12pt; border-collapse:collapse;">
-
-    <tr>
-        <td width="32%">NIK</td>
-        <td width="3%">:</td>
-        <td>{{ $surat->user->kependudukan->nik ?? '-' }}</td>
-    </tr>
-
+ 
     <tr>
         <td>Nama Lengkap</td>
         <td>:</td>
@@ -24,9 +17,21 @@
     </tr>
 
     <tr>
+        <td width="32%">NIK</td>
+        <td width="3%">:</td>
+        <td>{{ $surat->user->kependudukan->nik ?? '-' }}</td>
+    </tr>
+
+    <tr>
         <td>Tempat, Tanggal Lahir</td>
         <td>:</td>
-        <td>{{ $surat->user->kependudukan->tempat_lahir ?? '-' }}</td>
+        <td>
+            {{ $surat->user->kependudukan->tempat_lahir ?? '-' }},
+            {{ $surat->user->kependudukan->tanggal_lahir 
+                ? \Carbon\Carbon::parse($surat->user->kependudukan->tanggal_lahir)->translatedFormat('d F Y')
+                : '-' 
+            }}
+        </td>
     </tr>
 
     <tr>
@@ -60,5 +65,3 @@
     </tr>
 
 </table>
-
-<br>

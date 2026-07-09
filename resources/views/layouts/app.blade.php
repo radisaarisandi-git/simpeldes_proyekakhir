@@ -58,12 +58,19 @@
 
         .nav-sidebar .nav-link:hover{
             background:#1d73be!important;
+            color:#fff!important;
         }
 
         .nav-sidebar .nav-link.active{
             background:white!important;
             color:#0f4c81!important;
             font-weight:bold;
+        }
+
+        /* TAMBAHKAN INI */
+        .nav-sidebar .nav-link.active:hover{
+            background:#1d73be!important;
+            color:#fff!important;
         }
 
         .main-header{
@@ -111,9 +118,18 @@
             </ul>
         </nav>
 
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <a href="{{ Auth::user()->role === 'warga' ? route('warga.dashboard') : route('admin.dashboard') }}"
-       class="brand-link">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+
+        @auth
+            <a href="{{ auth()->user()->role === 'warga'
+                ? route('warga.dashboard')
+                : route('admin.dashboard') }}"
+            class="brand-link">
+        @endauth
+
+        @guest
+            <a href="{{ url('/') }}" class="brand-link">
+        @endguest
 
         <span class="brand-text font-weight-bold">
             <i class="fas fa-house-user mr-2" style="color:#6EDC5F;"></i>
@@ -194,9 +210,9 @@
                         @if (Auth::user()->role === 'staf' || Auth::user()->role === 'kades')
                             <li class="nav-item">
                                 <a href="{{ route('admin.surat.index') }}"
-                                    class="nav-link {{ Request::is('admin/surat*') ? 'active' : '' }}">
+                                class="nav-link {{ Request::is('admin/kelola-surat*') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-envelope-open-text"></i>
-                                    <p>Permohonan Surat <span class="badge badge-warning right">New</span></p>
+                                    <p>Permohonan Surat</p>
                                 </a>
                             </li>
                             <li class="nav-item">

@@ -1,20 +1,38 @@
-<div style="margin-top:40px; width:100%;">
+<br><br>
 
-    <div style="width:40%; float:right; text-align:center;">
+<table width="100%">
+    <tr>
 
-        Nangnung,
-        {{ \Carbon\Carbon::parse($surat->created_at)->translatedFormat('d F Y') }}
+        <td width="58%"></td>
 
-        <br><br>
+        <td width="42%" align="center">
 
-        Kepala Desa Nangnung
+            Sungailiat,
+            {{ \Carbon\Carbon::now()->translatedFormat('d F Y') }}
 
-        <br><br><br><br><br>
+            <br>
 
-        <strong>
-            (........................................)
-        </strong>
+            Kepala Desa Nangnung
 
-    </div>
+            <br><br>
 
-</div>
+            <img src="{{ public_path('images/ttd.png') }}"
+                 style="
+                    width:250px;
+                    height:auto;
+                 ">
+
+            <br>
+
+            <strong>
+                <u>AHMAD KURNIAWAN</u>
+            </strong>
+
+            <br>
+
+            Kepala Desa Nangnung
+
+        </td>
+
+    </tr>
+</table>

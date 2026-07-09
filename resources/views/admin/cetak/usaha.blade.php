@@ -30,8 +30,7 @@
 
 <p style="text-align: justify; line-height:1.8; font-size:12pt;">
 
-    Berdasarkan hasil pemeriksaan data administrasi yang ada pada Pemerintah Desa Nangnung,
-    Kecamatan Sungailiat, Kabupaten Bangka, benar bahwa yang bersangkutan memiliki usaha
+    Berdasarkan hasil pemeriksaan data administrasi yang ada pada Pemerintah Desa Nangnung, benar bahwa yang bersangkutan memiliki usaha
     dengan rincian sebagai berikut:
 
 </p>
@@ -63,8 +62,6 @@
     </tr>
 
 </table>
-
-<br>
 
 <p style="text-align:justify; line-height:1.8; font-size:12pt;">
 
