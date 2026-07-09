@@ -134,12 +134,45 @@ if ($request->jenis_surat == 'Surat Pengantar KK') {
      */
     public function cetak($id)
     {
-        $surat = Surat::findOrFail($id);
+        $surat = Surat::with('user.kependudukan')->findOrFail($id);
+        
 
-        $pdf = Pdf::loadView('warga.cetak_surat', compact('surat'))
-            ->setPaper('a4', 'portrait');
+        switch ($surat->jenis_surat) {
 
-        return $pdf->stream('Surat_Keterangan_' . $surat->id . '.pdf');
+            case 'Surat Keterangan Usaha':
+                $view = 'admin.cetak.usaha';
+                break;
+
+            case 'Surat Keterangan Tidak Mampu':
+                $view = 'admin.cetak.sktm';
+                break;
+
+            case 'Surat Keterangan Domisili':
+                $view = 'admin.cetak.domisili';
+                break;
+
+            case 'Surat Pengantar KTP':
+                $view = 'admin.cetak.ktp';
+                break;
+
+            case 'Surat Pengantar KK':
+                $view = 'admin.cetak.kk';
+                break;
+
+            case 'Surat Keterangan Serbaguna':
+                $view = 'admin.cetak.serbaguna';
+                break;
+
+            default:
+                abort(404, 'Template surat tidak ditemukan.');
+        }
+
+        $pdf = Pdf::loadView($view, compact('surat'))
+                ->setPaper('a4', 'portrait');
+
+        return $pdf->stream(
+            str_replace(' ', '_', $surat->jenis_surat) . '.pdf'
+        );
     }
 
     /**

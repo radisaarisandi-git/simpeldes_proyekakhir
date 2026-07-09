@@ -54,41 +54,96 @@
                                         <span class="badge badge-danger">Ditolak</span>
                                     @endif
                                 </td>
+                                
                                 <td>
+
                                     @if($surat->status == 'pending')
-                                        <form action="{{ route('admin.surat.status', $surat->id) }}" method="POST" style="display:inline;">
+
+                                        <form action="{{ route('admin.surat.status', $surat->id) }}"
+                                            method="POST"
+                                            style="display:inline;">
+
                                             @csrf
+
                                             <input type="hidden" name="status" value="selesai">
+
                                             <button type="submit" class="btn btn-sm btn-success">
-                                                <i class="fas fa-check"></i> Setujui
+
+                                                <i class="fas fa-check"></i>
+
+                                                Setujui
+
                                             </button>
+
                                         </form>
 
-                                        <form action="{{ route('admin.surat.status', $surat->id) }}" method="POST" style="display:inline;">
+                                        <form action="{{ route('admin.surat.status', $surat->id) }}"
+                                            method="POST"
+                                            style="display:inline;">
+
                                             @csrf
+
                                             <input type="hidden" name="status" value="ditolak">
-                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menolak surat ini?')">
-                                                <i class="fas fa-times"></i> Tolak
+
+                                            <button type="submit"
+                                                    class="btn btn-sm btn-danger"
+                                                    onclick="return confirm('Yakin ingin menolak surat ini?')">
+
+                                                <i class="fas fa-times"></i>
+
+                                                Tolak
+
                                             </button>
+
                                         </form>
+
                                     @else
-                                        <span class="text-muted d-block mb-1"><i class="fas fa-check-circle"></i> Selesai Diproses</span>
-                                        
+
+                                        <span class="text-muted d-block mb-2">
+
+                                            <i class="fas fa-check-circle text-success"></i>
+
+                                            Selesai Diproses
+
+                                        </span>
+
                                         @if($surat->status == 'selesai' || $surat->status == 'disetujui')
-                                            <a href="{{ route('warga.surat.cetak', $surat->id) }}" target="_blank" class="btn btn-sm btn-danger d-inline-block">
-                                                <i class="fas fa-file-pdf"></i> Cetak
+
+                                            <a href="{{ route('admin.surat.cetak', $surat->id) }}"
+                                            target="_blank"
+                                            class="btn btn-sm btn-danger mb-1">
+
+                                                <i class="fas fa-file-pdf"></i>
+
+                                                Cetak PDF
+
                                             </a>
+
                                         @endif
 
-                                        <form action="{{ route('surat.destroy', $surat->id) }}" method="POST" style="display:inline;">
+                                        <form action="{{ route('surat.destroy', $surat->id) }}"
+                                            method="POST"
+                                            style="display:inline;">
+
                                             @csrf
+
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-default" onclick="return confirm('Hapus arsip pengajuan ini dari database?')">
-                                                <i class="fas fa-trash text-danger"></i>
+
+                                            <button type="submit"
+                                                    class="btn btn-sm btn-secondary"
+                                                    onclick="return confirm('Hapus arsip pengajuan ini?')">
+
+                                                <i class="fas fa-trash"></i>
+
                                             </button>
+
                                         </form>
+
                                     @endif
+
                                 </td>
+
+
                             </tr>
                         @empty
                             <tr>

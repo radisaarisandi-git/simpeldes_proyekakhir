@@ -181,34 +181,22 @@
 
                     </p>
 
-                    @if($surat->status=='pending')
+                    @if($surat->status == 'pending')
 
                         <span class="badge badge-warning">
-
-                            <i class="fas fa-hourglass-half"></i>
-
-                            Menunggu Persetujuan
-
+                            Sedang Diproses
                         </span>
 
-                    @elseif($surat->status=='selesai' || $surat->status=='disetujui')
+                    @elseif($surat->status == 'selesai' || $surat->status == 'disetujui')
 
                         <span class="badge badge-success">
-
-                            <i class="fas fa-check-circle"></i>
-
-                            Disetujui
-
+                            Surat telah selesai diproses. Silakan ambil di kantor desa.
                         </span>
 
                     @else
 
                         <span class="badge badge-danger">
-
-                            <i class="fas fa-times-circle"></i>
-
-                            Ditolak
-
+                            Pengajuan ditolak.
                         </span>
 
                     @endif
@@ -228,17 +216,10 @@
 
                     </button>
 
-                    @if($surat->status=='selesai' || $surat->status=='disetujui')
-
-                        <a href="{{ route('warga.surat.cetak',$surat->id) }}"
-                           class="btn btn-success">
-
-                            <i class="fas fa-print"></i>
-
-                            Cetak
-
-                        </a>
-
+                    @if($surat->status == 'selesai')
+                        <span class="badge badge-success">
+                            Surat telah selesai diproses
+                        </span>
                     @endif
 
                     @if($surat->status=='pending')

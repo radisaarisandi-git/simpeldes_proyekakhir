@@ -22,27 +22,74 @@ Route::middleware('guest')->group(function () {
 
 // Grup Route untuk Auth (Sudah Login)
 Route::middleware('auth')->group(function () {
+
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    // --- PANEL WARGA ---
-    Route::get('/warga/dashboard', function () {
-        return view('warga.dashboard');
-    })->name('warga.dashboard');
+    // ==========================
+    // PANEL WARGA
+    // ==========================
 
-    // --- PANEL ADMIN / KADES ---
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->name('admin.dashboard'); // <-- PASTIKAN HURUF DAN TITIKNYA SAMA PERSIS!
+    Route::get('/warga/dashboard', [SuratController::class, 'dashboard'])
+        ->name('warga.dashboard');
+
+    Route::get('/warga/riwayat-surat', [SuratController::class, 'index'])
+        ->name('warga.surat.index');
+
+    Route::get('/warga/ajukan-surat', [SuratController::class, 'create'])
+        ->name('warga.surat.create');
+
+    Route::post('/warga/ajukan-surat', [SuratController::class, 'store'])
+        ->name('warga.surat.store');
+
+
+    // ==========================
+    // PANEL ADMIN
+    // ==========================
+
+    Route::get('/admin/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+
+    Route::get('/admin/kelola-surat', [SuratController::class, 'adminIndex'])
+        ->name('admin.surat.index');
+
+    Route::get('/admin/surat/{id}/cetak', [SuratController::class, 'cetak'])
+        ->name('admin.surat.cetak');
+
+    Route::post('/admin/surat/{id}/status', [SuratController::class, 'updateStatus'])
+        ->name('admin.surat.status');
+
+    Route::delete('/surat/{id}/hapus', [SuratController::class, 'destroy'])
+        ->name('surat.destroy');
+
+
+    // ==========================
+    // KEPENDUDUKAN
+    // ==========================
+
+    Route::get('/admin/kependudukan', [KependudukanController::class, 'index'])
+        ->name('kependudukan.index');
+
+    Route::get('/admin/kependudukan/{id}/edit', [KependudukanController::class, 'edit'])
+        ->name('kependudukan.edit');
+
+    Route::put('/admin/kependudukan/{id}', [KependudukanController::class, 'update'])
+        ->name('kependudukan.update');
+
+    Route::delete('/admin/kependudukan/{id}', [KependudukanController::class, 'destroy'])
+        ->name('kependudukan.destroy');
+
+});
 
     Route::get('/warga/riwayat-surat', [SuratController::class, 'index'])->name('warga.surat.index');
     Route::get('/warga/ajukan-surat', [SuratController::class, 'create'])->name('warga.surat.create');
     Route::post('/warga/ajukan-surat', [SuratController::class, 'store'])->name('warga.surat.store');
-    Route::get('/warga/surat/{id}/cetak', [SuratController::class, 'cetak'])->name('warga.surat.cetak');
 
     // --- PANEL ADMIN / KADES ---
     Route::get('/warga/dashboard', [SuratController::class, 'dashboard'])
         ->name('warga.dashboard');
-
+    
+    Route::get('/admin/kelola-surat', [SuratController::class, 'adminIndex'])->name('admin.surat.index');
     Route::get('/admin/kelola-surat', [SuratController::class, 'adminIndex'])->name('admin.surat.index');
     Route::post('/admin/surat/{id}/status', [SuratController::class, 'updateStatus'])->name('admin.surat.status');
     Route::delete('/surat/{id}/hapus', [SuratController::class, 'destroy'])->name('surat.destroy');
@@ -59,5 +106,3 @@ Route::get('/admin/dashboard', function () {
 
     // 4. Memproses Hapus Data Warga
     Route::delete('/admin/kependudukan/{id}', [KependudukanController::class, 'destroy'])->name('kependudukan.destroy');
-
-}); // <-- Penutup Grup Auth yang Hilang Tadi!
